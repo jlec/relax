@@ -1,0 +1,562 @@
+\documentclass[a4paper, 11pt, twoside, openright]{book}
+
+% Graphics.
+\usepackage[dvips]{graphicx}
+
+% Natural Sciences Citations and References.
+\usepackage{natbib}
+
+% The index.
+\usepackage{imakeidx}
+
+% Good looking tables.
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{rotating}
+\usepackage{lscape}
+
+% Nth.
+\usepackage[super]{nth}
+
+% Obliterate those painful LaTeX margins!
+\usepackage{vmargin}
+
+% Better screenshot layout.
+\raggedbottom
+
+% Better Table of contents (Toc), List of figures (Lof), and List of tables (Lot).
+\usepackage{tocloft}
+
+% Hyperlinks.
+\usepackage[pdftitle={The relax manual}]{hyperref}
+\hypersetup{colorlinks,
+            citecolor=blue,%
+            filecolor=blue,%
+            linkcolor=blue,%
+            urlcolor=blue}
+\usepackage{breakurl}
+
+% Better maths.
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathdots}
+
+% Source code and scripts.
+\usepackage[procnames]{listings}
+\usepackage[svgnames]{xcolor}
+\usepackage{textcomp}
+\include{script_definition}
+\lstset{
+    backgroundcolor=\color{white},
+    basewidth=0.5em,
+    basicstyle=\ttfamily \footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    columns=fixed,
+    commentstyle=\color{Blue},
+    frame=none,
+    keepspaces=true,
+    keywordstyle=\bfseries \color{ForestGreen},
+    keywordstyle=[2]\bfseries \color{BlueViolet},
+    keywordstyle=[3]\bfseries \color{SaddleBrown},
+    keywordstyle=[4]\bfseries \color{Blue},
+    keywordstyle=[5]\bfseries \color{MidnightBlue},
+    language=relax,
+    numbers=left,
+    numbersep=15pt,
+    numberstyle=\tiny \color{DarkOrange},
+    procnamestyle=\color{LightSeaGreen},
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    stepnumber=1,
+    stringstyle=\color{FireBrick},
+    tabsize=4,
+    upquote=true,
+}
+
+% New commands.
+\newcommand{\example}[1]{\vspace{-1ex} \sloppy{\footnotesize \texttt{#1}}}
+\newcommand{\smallexample}[1]{\vspace{-1ex} \sloppy{\scriptsize \texttt{#1}}}
+\newcommand{\keyword}[1]{\textsf{#1}}
+\newcommand{\quotecmd}[1]{`\texttt{#1}'}
+\newcommand{\uf}[1]{\texttt{#1}}
+\newcommand{\prompt}[1]{\texttt{#1}}
+\newcommand{\promptstring}[1]{``\texttt{#1}''}
+\newcommand{\shortcutkey}[1]{``{\small \textsf{[#1]}}''}
+\newcommand{\gui}[1]{``{\small \textsf{#1}}''}
+\newcommand{\guibutton}[1]{``{\small \textsf{#1}}''}
+\newcommand{\guimenuitemone}[1]{``{\small \textsf{#1}}''}
+\newcommand{\guimenuitemtwo}[2]{``{\small \textsf{#1$\to$\linebreak[0]#2}}''}
+\newcommand{\guimenuitemthree}[3]{``{\small \textsf{#1$\to$\linebreak[0]#2$\to$\linebreak[0]#3}}''}
+\newcommand{\guistring}[1]{``{\small \textsf{#1}}''}
+\newcommand{\directory}[1]{\texttt{#1}}
+\newcommand{\file}[1]{\texttt{#1}}
+\newcommand{\module}[1]{\texttt{#1}}
+\newcommand{\ossep}{/\linebreak[0]}
+\newcommand{\osus}{\_\linebreak[0]}
+\newcommand{\pycode}[1]{{\small \texttt{#1}}}
+\newcommand{\pysep}{.\linebreak[0]}
+\newcommand{\pystring}[1]{`{\small \texttt{#1}}'}
+\newcommand{\pyus}{\_\linebreak[0]}
+\newcommand{\software}[1]{\texttt{#1}}
+\newcommand{\no}{-}
+\newcommand{\yes}{\checkmark}
+\newcommand{\ufsep}{.\linebreak[0]}
+\newcommand{\ufus}{\_\linebreak[0]}
+
+% New environment.
+\newenvironment{exampleenv}{\footnotesize \begin{ttfamily} \sloppy}{\fussy \end{ttfamily}}
+\newenvironment{spacedpara}{\setlength{\parindent}{0pt} \setlength{\parskip}{2ex plus 0.5ex minus 0.2ex}}{}
+
+% Modify the Toc, Lof, and Lot layout.
+\setlength{\cftsecnumwidth}{10mm}
+\setlength{\cftsubsecnumwidth}{16mm}
+\setlength{\cftfignumwidth}{12mm}
+\setlength{\cfttabnumwidth}{12mm}
+
+% Maths commands.
+\setcounter{MaxMatrixCols}{20}
+\DeclareMathOperator{\arccosh}{arccosh}
+\newcommand{\Par}{{\scriptscriptstyle \parallel}}
+\newcommand{\Per}{{\scriptscriptstyle \perp}}
+\newcommand{\Diff}{\mathfrak{D}}
+\newcommand{\Ri}{\mathrm{R}_i}
+\newcommand{\Rone}{\mathrm{R}_1}
+\newcommand{\Ronerho}{\mathrm{R}_{1\rho}}
+\newcommand{\Rtwo}{\mathrm{R}_2}
+\newcommand{\NOE}{\mathrm{NOE}}
+\newcommand{\crossrate}{\sigma_{\scriptscriptstyle \mathrm{NOE}}}
+\newcommand{\gH}{\gamma_{\scriptscriptstyle H}}
+\newcommand{\gX}{\gamma_{\scriptscriptstyle X}}
+\newcommand{\Spaceset}{\mathfrak{K}}
+\newcommand{\Univset}{\mathfrak{U}}
+\newcommand{\Space}{\mathfrak{S}}
+\newcommand{\Diffset}{\mathfrak{D}}
+\newcommand{\Diffgeoset}{\mathfrak{G}}
+\newcommand{\Difforiset}{\mathfrak{O}}
+\newcommand{\Mfset}{\mathfrak{F}}
+\newcommand{\Localset}{\mathfrak{T}}
+\newcommand{\KL}{\Delta_{\scriptscriptstyle \text{K-L}}}
+
+\newcommand{\aveoffset}{\bar\Omega}
+\newcommand{\offsetA}{\Omega_{\textrm{A}}}
+\newcommand{\offsetB}{\Omega_{\textrm{B}}}
+\newcommand{\offsetC}{\Omega_{\textrm{C}}}
+\newcommand{\aveomega}{\bar\omega}
+\newcommand{\dw}{\Delta\omega}
+\newcommand{\dwAB}{\Delta\omega_{\textrm{AB}}}
+\newcommand{\dwAC}{\Delta\omega_{\textrm{AC}}}
+\newcommand{\dwBC}{\Delta\omega_{\textrm{BC}}}
+\newcommand{\dwH}{\Delta\omega^{\scriptscriptstyle\mathrm{H}}}
+\newcommand{\dwHAB}{\Delta\omega^{\scriptscriptstyle\mathrm{H}}_{\textrm{AB}}}
+\newcommand{\dwHAC}{\Delta\omega^{\scriptscriptstyle\mathrm{H}}_{\textrm{AC}}}
+\newcommand{\dwHBC}{\Delta\omega^{\scriptscriptstyle\mathrm{H}}_{\textrm{BC}}}
+\newcommand{\konetwo}{\textrm{k}_{\textrm{12}}}
+\newcommand{\konethree}{\textrm{k}_{\textrm{13}}}
+\newcommand{\koneN}{\textrm{k}_{\textrm{1N}}}
+\newcommand{\kex}{\textrm{k}_{\textrm{ex}}}
+\newcommand{\kexAB}{\textrm{k}_{\textrm{ex}}^{\textrm{AB}}}
+\newcommand{\kexAC}{\textrm{k}_{\textrm{ex}}^{\textrm{AC}}}
+\newcommand{\kexBC}{\textrm{k}_{\textrm{ex}}^{\textrm{BC}}}
+\newcommand{\kA}{\textrm{k}_{\textrm{A}}}
+\newcommand{\kB}{\textrm{k}_{\textrm{B}}}
+\newcommand{\kC}{\textrm{k}_{\textrm{C}}}
+\newcommand{\kAB}{\textrm{k}_{\textrm{AB}}}
+\newcommand{\kBA}{\textrm{k}_{\textrm{BA}}}
+\newcommand{\kAC}{\textrm{k}_{\textrm{AC}}}
+\newcommand{\kCA}{\textrm{k}_{\textrm{CA}}}
+\newcommand{\kBC}{\textrm{k}_{\textrm{BC}}}
+\newcommand{\kCB}{\textrm{k}_{\textrm{CB}}}
+\newcommand{\ncyc}{N_{\textrm{cyc}}}
+\newcommand{\nucpmg}{\nu_{\textrm{CPMG}}}
+\newcommand{\omegaA}{\omega_{\textrm{A}}}
+\newcommand{\omegaB}{\omega_{\textrm{B}}}
+\newcommand{\omegaC}{\omega_{\textrm{C}}}
+\newcommand{\omegae}{\omega_{\textrm{e}}}
+\newcommand{\omegaHA}{\omega^{\scriptscriptstyle\mathrm{H}}_{\textrm{A}}}
+\newcommand{\omegaHB}{\omega^{\scriptscriptstyle\mathrm{H}}_{\textrm{B}}}
+\newcommand{\omegaHC}{\omega^{\scriptscriptstyle\mathrm{H}}_{\textrm{C}}}
+\newcommand{\omegaone}{\omega_1}
+\newcommand{\omegarf}{\omega_{\textrm{rf}}}
+\newcommand{\pone}{p_{\textrm{1}}}
+\newcommand{\ptwo}{p_{\textrm{2}}}
+\newcommand{\pthree}{p_{\textrm{3}}}
+\newcommand{\pA}{p_{\textrm{A}}}
+\newcommand{\pB}{p_{\textrm{B}}}
+\newcommand{\pC}{p_{\textrm{C}}}
+\newcommand{\pN}{p_{\textrm{N}}}
+\newcommand{\Phiex}{\Phi_{\textrm{ex}}}
+\newcommand{\PhiexB}{\Phi_{\textrm{ex,B}}}
+\newcommand{\PhiexC}{\Phi_{\textrm{ex,C}}}
+\newcommand{\Phiexi}{\Phi_{\textrm{ex,i}}}
+\newcommand{\Rex}{\mathrm{R}_{\textrm{ex}}}
+\newcommand{\RoneA}{\mathrm{R}_{\textrm{1A}}}
+\newcommand{\RoneB}{\mathrm{R}_{\textrm{1B}}}
+\newcommand{\RoneC}{\mathrm{R}_{\textrm{1C}}}
+\newcommand{\Ronerhoprime}{\mathrm{R}_{1\rho}'}
+\newcommand{\RonerhoprimeA}{\mathrm{R}_{1\rho A}'}
+\newcommand{\RonerhoprimeB}{\mathrm{R}_{1\rho B}'}
+\newcommand{\RonerhoprimeC}{\mathrm{R}_{1\rho C}'}
+\newcommand{\Rtwoeff}{\mathrm{R}_{\textrm{2eff}}}
+\newcommand{\RtwoeffCR}{\mathrm{R}_{\textrm{2eff}}^{\textrm{CR72}}}
+\newcommand{\Rtwozero}{\mathrm{R}_2^0}
+\newcommand{\RtwozeroA}{\mathrm{R}_{\mathrm{2A}}^0}
+\newcommand{\RtwozeroB}{\mathrm{R}_{\mathrm{2B}}^0}
+\newcommand{\RtwozeroC}{\mathrm{R}_{\mathrm{2C}}^0}
+\newcommand{\RtwozeroMQ}{\mathrm{R}_{\mathrm{2,MQ}}^0}
+\newcommand{\RtwoDQA}{\mathrm{R}_{\mathrm{2,DQ}}^{\mathrm{A}}}
+\newcommand{\RtwoDQB}{\mathrm{R}_{\mathrm{2,DQ}}^{\mathrm{B}}}
+\newcommand{\RtwoDQC}{\mathrm{R}_{\mathrm{2,DQ}}^{\mathrm{C}}}
+\newcommand{\RtwoZQA}{\mathrm{R}_{\mathrm{2,ZQ}}^{\mathrm{A}}}
+\newcommand{\RtwoZQB}{\mathrm{R}_{\mathrm{2,ZQ}}^{\mathrm{B}}}
+\newcommand{\RtwoZQC}{\mathrm{R}_{\mathrm{2,ZQ}}^{\mathrm{C}}}
+\newcommand{\tex}{\tau_{\textrm{ex}}}
+\newcommand{\taucpmg}{\tau_{\textrm{CPMG}}}
+\newcommand{\Trelax}{T_{\textrm{relax}}}
+
+% Natbib Citation format.
+\bibpunct{(}{)}{;}{a}{,}{,}
+
+% Inline citations.
+\usepackage{bibentry}
+\nobibliography*
+
+% Allow the maths blocks to be broken!!!
+\allowdisplaybreaks[1]
+
+% Set the graphics path to the parent relax directory.
+\graphicspath{{../../}}
+
+% latex2html stuff.
+\usepackage{html}
+\htmladdtonavigation{\htmladdnormallink{\htmladdimg{http://www.nmr-relax.com/images/pdf_icon_nav.png}}{http://download.gna.org/relax/manual/relax.pdf}}
+\htmladdtonavigation{\htmladdnormallink{\htmladdimg{http://www.nmr-relax.com/images/relax_logo_nav.png}}{http://www.nmr-relax.com}}
+\begin{htmlonly}
+  % Make hyperrefs work in latex2html.
+  \def\url#1{\htmladdnormallink{#1}{#1}}
+  \def\href#1#2{\htmladdnormallink{#2}{#1}}
+
+  % Support for \bibentry{}.
+  \def\bibentry#1{\citet{#1}}
+
+  % Kill the rotate environment that latex2html cannot handle.
+  \renewenvironment{rotate}[1]{}
+
+  % Redefine some commands to be prettier in HTML.
+  \newcommand{\no}{-}
+  \newcommand{\yes}{y}
+\end{htmlonly}
+
+% Make the index.
+\makeindex
+
+
+% Start the document.
+%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+% Include the hyphenation rules.
+\include{hyphenation}
+
+
+\frontmatter
+
+
+% Title page.
+%%%%%%%%%%%%%
+
+\begin{titlepage}
+\begin{center}
+
+% Vertical centering.
+\vspace*{\stretch{2}}
+
+% Title.
+{\Huge \textbf{relax}}
+\vspace{\stretch{1}}
+
+% relax version number.
+{\LARGE \textbf{\input{relax_version}}}
+\vspace{\stretch{1}}
+
+\centerline{
+  \includegraphics[
+    width=\textwidth,
+    bb=14 14 793 342
+  ]
+  {images/ulysses}
+}
+\vspace{\stretch{2}}
+
+% Subtitle.
+{\huge \textbf{Molecular dynamics by}}
+\vspace{\stretch{0.5}}
+
+{\huge \textbf{NMR data analysis}}
+\vspace{\stretch{1}}
+
+% Date.
+{\large \today}
+\vspace*{\stretch{2}}
+
+\end{center}
+\end{titlepage}
+
+
+% Table of Contents.
+%%%%%%%%%%%%%%%%%%%%
+
+\tableofcontents
+
+
+% List of Figures.
+%%%%%%%%%%%%%%%%%%
+
+\newpage
+\listoffigures
+
+
+% List of Tables.
+%%%%%%%%%%%%%%%%%
+
+\newpage
+\listoftables
+
+
+% Abbreviations.
+%%%%%%%%%%%%%%%%
+
+\chapter*{Abbreviations}
+
+\begin{description}
+  \item[AIC:]  Akaike's Information Criteria (model selection method)
+  \item[AICc:]  small sample size corrected AIC (model selection method)
+  \item[API:]  application programming interface
+  \item[ANOVA:]  analysis of variance (field of statistics)
+  \item[BC:]  back calculation
+  \item[BIC:]  Bayesian Information Criteria (model selection method)
+  \item[BFGS:]  Broyden-Fletcher-Goldfarb-Shanno (optimisation method)
+  \item[$C(\tau)$:]  correlation function
+  \item[$\chi^2$:]  chi-squared function
+  \item[CG:]  conjugate gradient (optimisation)
+  \item[CPMG:]  the Carr-Purcell-Meiboom-Gill pulse sequence
+  \item[CR72:]  the \citet{CarverRichards72} relaxation dispersion model
+  \item[CSA:]  chemical shift anisotropy
+  \item[CV:]  cross validation
+  \item[CVS:]  Concurrent Versions System (open source version control system)
+  \item[$\Diff$:]  the set of diffusion tensor parameters
+  \item[$\Diff_\Par$:]  the eigenvalue of the spheroid diffusion tensor corresponding to the unique axis of the tensor
+  \item[$\Diff_\Per$:]  the eigenvalue of the spheroid diffusion tensor corresponding to the two axes perpendicular to the unique axis
+  \item[$\Diff_a$:]  the anisotropic component of the Brownian rotational diffusion tensor
+  \item[$\Diff_{iso}$:]  the isotropic component of the Brownian rotational diffusion tensor
+  \item[$\Diff_r$:]  the rhombic component of the Brownian rotational diffusion tensor
+  \item[$\Diff_{ratio}$:]  the ratio of $\Diff_\Par$ to $\Diff_\Per$
+  \item[$\Diff_x$:]  the eigenvalue of the Brownian rotational diffusion tensor in which the corresponding eigenvector defines the x-axis of the tensor
+  \item[$\Diff_y$:]  the eigenvalue of the Brownian rotational diffusion tensor in which the corresponding eigenvector defines the y-axis of the tensor
+  \item[$\Diff_z$:]  the eigenvalue of the Brownian rotational diffusion tensor in which the corresponding eigenvector defines the z-axis of the tensor
+  \item[DPL94:]  the \citet{Davis94} relaxation dispersion model
+  \item[DQ:]  double quantum
+  \item[$\epsilon_i$:]  elimination value
+  \item[FSF:]  Free Software Foundation
+  \item[GNU:]  GNU's Not Unix!
+  \item[GPG:]  GNU Privacy Guard (software)
+  \item[GPL:]  GNU general public licence
+  \item[GUI:]  graphical user interface
+  \item[ID string:]  identification string
+  \item[IT99:]  the \citet{IshimaTorchia99} relaxation dispersion model
+  \item[$J(\omega)$:]  spectral density function
+  \item[LM63:]  the \citet{LuzMeiboom63} relaxation dispersion model
+  \item[M61:]  the \citet{Meiboom61} relaxation dispersion model
+  \item[MC:]  Monte Carlo (simulations)
+  \item[MD:]  molecular dynamics (simulations)
+  \item[MMQ:]  proton-heteronuclear SQ, ZQ, DQ, and MQ data (multi-multiple quantum)
+  \item[MP05:]  the \citet{MiloushevPalmer05} relaxation dispersion model
+  \item[MPI:]  message passing interface
+  \item[MQ:]  multiple quantum
+  \item[NMR:]  if you do not know this one, do not read further
+  \item[NNTP:]  network news transfer protocol
+  \item[NOE:]  nuclear Overhauser effect
+  \item[NS:]  numeric solution
+  \item[ORD:]  optical rotatory dispersion
+  \item[OS:]  operating system
+  \item[PCS:]  pseudocontact shift
+  \item[PDB:]  Protein Data Bank
+  \item[pdf:]  probability distribution function
+  \item[PRE:]  paramagnetic relaxation enhancement
+  \item[$r$:]  bond length
+  \item[$\Rone$:]  spin-lattice relaxation rate
+  \item[$\Rtwo$:]  spin-spin relaxation rate
+  \item[$R_{ex}$:]  chemical exchange relaxation rate
+  \item[RDC:]  residual dipolar coupling
+  \item[RMSD:]  root-mean-square deviation
+  \item[ROE:]  rotating-frame Overhauser effect
+  \item[RSDM:]  reduced spectral density mapping
+  \item[RSS:]  rich site summary (web feed format)
+  \item[$S^2$, $S^2_f$, and $S^2_s$:]  model-free generalised order parameters
+  \item[SVN:]  Apache Subversion (open source version control system)
+  \item[$\tau_e$, $\tau_f$, and $\tau_s$:]  model-free effective internal correlation times
+  \item[$\tau_m$:]  global rotational correlation time
+  \item[TP02:]  the \citet{TrottPalmer02} relaxation dispersion model
+  \item[TAP03:]  the \citet{Trott03} relaxation dispersion model
+  \item[TSMFK01:]  the \citet{Tollinger01} relaxation dispersion model
+  \item[UI:]  user interface
+  \item[XML:]  extensible markup language
+  \item[ZQ:]  zero quantum
+\end{description}
+
+% Equation numbering fix for latex2html. 
+\begin{htmlonly}
+\addtocounter{chapter}{-1}
+\end{htmlonly}
+
+
+% Citations.
+%%%%%%%%%%%%
+
+\begin{spacedpara}
+\tolerance=1000
+\include{citations}
+\end{spacedpara}
+
+
+%%%%%%%%%%%%%%
+% Main text. %
+%%%%%%%%%%%%%%
+
+\mainmatter
+\begin{spacedpara}
+
+
+% Layout of the document.
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\part{The basics}
+\include{intro}
+\include{install}
+\include{infrastruct}
+\include{data_model}
+
+\part{The specific analyses}
+\include{curvefit}
+\include{noe}
+\include{model-free}
+\include{jw_mapping}
+\include{consistency_tests}
+\include{n_state}
+\include{dispersion}
+
+\part{Power users}
+\include{develop}
+
+\part{Advanced topics}
+\include{optimisation}
+\include{maths}
+
+\part{Reference}
+\include{functions}
+\include{licence}
+
+
+% End of the main chapters.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{spacedpara}
+
+
+
+% Bibliography.
+%%%%%%%%%%%%%%%
+
+\bibliographystyle{relax}
+\bibliography{bibliography}
+
+
+
+% Index.
+%%%%%%%%
+
+% Cross-referencing.
+\index{AIC|see{model selection, AIC}}
+\index{AICc|see{model selection, AICc}}
+\index{anisotropic diffusion|see{diffusion, anisotropic}}
+\index{ANOVA model selection|see{model selection, ANOVA}}
+\index{asymmetric diffusion|see{diffusion, ellipsoid (asymmetric)}}
+\index{Augmented Lagrangian|see{optimisation, constraint algorithm, Method of Multipliers}}
+\index{axially symmetric diffusion|see{diffusion, spheroid (axially symmetric)}}
+\index{Bayesian model selection|see{model selection, Bayesian}}
+\index{BFGS|see{optimisation, algorithm, BFGS}}
+\index{BIC|see{model selection, BIC}}
+\index{Bootstrap model selection|see{model selection, Bootstrap}}
+\index{Brownian diffusion|see{diffusion, Brownian}}
+\index{bzip2|see{compression, bzip2}}
+\index{C module compilation|see{SCons, C module compilation}}
+\index{Cauchy point|see{optimisation, algorithm, Cauchy point}}
+\index{CG-Steihaug|see{optimisation, algorithm, CG-Steihaug}}
+\index{cross rate|see{relaxation rate, cross rate}}
+\index{cross-relaxation|see{relaxation rate, cross-relaxation}}
+\index{cross-validation model selection|see{model selection, cross-validation}}
+\index{Dasha|see{software, Dasha}}
+\index{dogleg|see{optimisation, algorithm, dogleg}}
+\index{exact trust region|see{optimisation, algorithm, exact trust region}}
+\index{ellipsoidal diffusion|see{diffusion, ellipsoid (asymmetric)}}
+\index{Fletcher-Reeves|see{optimisation, algorithm, Fletcher-Reeves}}
+\index{Frequentist model selection|see{model selection, Frequentist}}
+\index{GNU/Linux|see{Operating system, GNU/\ Lin\-ux}}
+\index{Grace|see{software, Grace}}
+\index{GUI|see{User interface, GUI}}
+\index{gzip|see{compression, gzip}}
+\index{Hestenes-Stiefel|see{optimisation, algorithm, Hestenes-Stiefel}}
+\index{Hypothesis testing model selection|see{model selection, Hypothesis testing}}
+\index{isotropic diffusion|see{diffusion, sphere (isotropic)}}
+\index{keyword argument|see{argument, keyword}}
+\index{Kullback-Leibler discrepancy|see{discrepancy, Kullback-Leibler}}
+\index{Levenberg-Marquardt|see{optimisation, algorithm, Levenberg-Marquardt}}
+\index{Linux|see{Operating system, GNU/\-Lin\-ux}}
+\index{Logarithmic barrier|see{optimisation, constraint algorithm, Logarithmic barrier}}
+\index{longitudinal relaxation|see{relaxation rate, spin-lattice}}
+\index{Mac OS X|see{Operating system, Mac OS X}}
+\index{Method of Multipliers|see{optimisation, constraint algorithm, Method of Multipliers}}
+\index{minfx|see{optimisation, minfx}}
+\index{Modelfree|see{software, Modelfree}}
+\index{MOLMOL|see{software, MOLMOL}}
+\index{MS Windows|see{Operating system, MS Windows}}
+\index{Nelder-Mead simplex|see{optimisation, algorithm, Nelder-Mead simplex}}
+\index{Newton|see{optimisation, algorithm, Newton}}
+\index{Newton-Raphson|see{optimisation, algorithm, Newton}}
+\index{Newton-CG|see{optimisation, algorithm, New\-ton-CG}}
+\index{NMRView|see{software, NMRView}}
+\index{OpenDX|see{software, OpenDX}}
+\index{OpenMPI|see{MPI, OpenMPI}}
+\index{OS X|see{Operating system, Mac OS X}}
+\index{PCS|see{Pseudo-contact shift}}
+\index{Polak-Ribi\`ere|see{optimisation, algorithm, Polak-Ribi\`ere}}
+\index{Polak-Ribi\`ere +|see{optimisation, algorithm, Polak-Ribi\`ere +}}
+\index{PyMOL|see{software, PyMOL}}
+\index{R1@$\Rone$|see{relaxation rate, spin-lattice}}
+\index{R2@$\Rtwo$|see{relaxation rate, spin-spin}}
+\index{RDC|see{Residual dipolar couplings}}
+\index{relax|see{software, relax}}
+\index{simplex algorithm|see{optimisation, algorithm, Nelder-Mead simplex}}
+\index{Sparky|see{software, Sparky}}
+\index{spherical diffusion|see{diffusion, sphere (isotropic)}}
+\index{spheroidal diffusion|see{diffusion, spheroid (axially symmetric)}}
+\index{spin-lattice relaxation|see{relaxation rate, spin-lattice}}
+\index{spin-spin relaxation|see{relaxation rate, spin-spin}}
+\index{steepest descent|see{optimisation, algorithm, steepest descent}}
+\index{step-length|see{optimisation, step-length selection algorithm}}
+\index{SVN|see{Subversion}}
+\index{svnmerge.py|see{Subversion, svnmerge.py}}
+\index{Tensor|see{software, Tensor}}
+\index{transverse relaxation|see{relaxation rate, spin-spin}}
+\index{Windows|see{Operating system, MS Windows}}
+\index{Unix|see{Operating system, Unix}}
+\index{XEasy|see{software, XEasy}}
+
+\printindex
+
+
+\end{document}
